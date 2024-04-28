@@ -1,0 +1,13 @@
+body[data-layout=horizontal] .page-content{
+    margin-top:2.5em;
+}
+
+#carouselExampleIndicators{
+    margin-bottom:-5.5em;
+}
+.page-content{
+    padding-top:0.0em;;
+}
+.card-img-top{
+    max-height: 240px;
+}
