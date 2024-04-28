@@ -23,8 +23,8 @@
                               <th scope="col">Restaurant</th>
                               <th scope="col">Buyer</th>
                               <th scope="col">Delivery</th>
-                              <th>Payment Status</th>
-                              <th>Status</th>
+                              <th scope="col">Payment Status</th>
+                              <th scope="col">Order Status</th>
                               <th scope="col"></th>
                             </tr>
                             <tr>

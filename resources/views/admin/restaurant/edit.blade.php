@@ -109,6 +109,7 @@
                 </div>
 
                 <div class="tab-pane fade show" id="food_tab" role="tabpanel" aria-labelledby="food-tab">
+                    <a class="btn btn-success float-right mb-2" href="javascript:;" data-toggle="modal" id="new">Add Food</a>
                     <form method="POST" action="{{url('/api/food/'.$restaurant['id'])}}" enctype="multipart/form-data" class="excludeForm">
                     @csrf
                     @method('PUT')
@@ -146,8 +147,6 @@
                         </table>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
-
-                    <a class="btn btn-success float-right" href="javascript:;" data-toggle="modal" id="new">Add Food</a>
                     <div class="modal fade" id="crud-modal" aria-hidden="true" >
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -187,7 +186,6 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-primary pull-right">Save</button>
-                                        <button type="button" class="btn btn-secondary text-white" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                                 </form>

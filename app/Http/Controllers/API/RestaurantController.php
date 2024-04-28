@@ -5,12 +5,14 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Http\Requests\Admin\StoreRestaurantRequest;
+use App\Mail\NewRestaurantApplicationEmail;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\DeliveryType;
 use App\Models\Category;
 use App\Models\Food;
 use App\Models\User;
+use Mail;
 use Auth;
 
 class RestaurantController extends BaseController
@@ -83,7 +85,7 @@ class RestaurantController extends BaseController
             $approval = $request->input('approval') ? 3 : 4;
         }
 
-        Restaurant::create([
+        $restaurant = Restaurant::create([
             'name' => $request->input('name'),
             'category_id' => $request->input('category'),
             'description' => $request->input('description'),
@@ -93,6 +95,14 @@ class RestaurantController extends BaseController
             'manager_id' => $request->input('manager_id') ? $request->input('manager_id') : Auth::user()->id,
             'created_by' => Auth::user()->id,
         ]);
+
+        if(Auth::user()->hasRole('Manager')){
+            $manager = User::find(Auth::user()->id);
+            $email = new NewRestaurantApplicationEmail($manager, $restaurant);
+
+            $recipient_email = 'admin@gmail.com';
+            Mail::to($recipient_email)->send($email);
+        }
 
         $response = ['message' =>  'Restaurant Created'];
         return response($response, 200);

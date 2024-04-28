@@ -47,9 +47,14 @@
                         </td>
                     </tr>
                 </table>
-                <button class="btn btn-primary pull-right">Submit</button>
+                <div class="d-flex flex-wrap mt-3">
+                    <div class="ms-auto my-3">
+                        <button class="btn btn-primary pull-right">Update Order Status</button>
+                    </div>
+                </div>
                 </form>
 
+                <p class="fs-4 mt-2">List of Food</p>
                 <div class="row">
                     @foreach ($order['order_details'] as $orders)
                         <div class="col-md-4 mb-4">

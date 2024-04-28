@@ -21,7 +21,7 @@ class RestaurantController extends Controller
     {
         if($request->ajax()) {
             if(Auth::user()->hasRole('Manager')){
-                $data = Restaurant::ManagerId(Auth::user()->id)
+                $data = Restaurant::ManagerId(Auth::user()->id)->Approved()
                 ->with(['category','foods','status','approval'])->select('restaurants.*');
             }else{
                 $data = Restaurant::with(['category','foods','status','approval'])->select('restaurants.*');
