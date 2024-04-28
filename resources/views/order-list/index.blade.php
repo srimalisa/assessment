@@ -33,6 +33,7 @@
                         <td>Order Status</td>
                         <td>Payment Status</td>
                         <td>Total</td>
+                        <td>Order Item</td>
                         <td>Action</td>
                     </tr>
                     @foreach ($order as $orders)
@@ -43,10 +44,35 @@
                             <td>{{ isset($orders['order_status']['name']) ? $orders['order_status']['name'] : '' }}</td>
                             <td>{{ isset($orders['payment']['payment_status']) ? $orders['payment']['payment_status'] : 'Pending' }}</td>
                             <td>{{ $orders['total_price'] }}</td>
+                            <td><i class="btn btn-secondary btn-sm bx bx-plus" data-toggle="collapse" data-target=".row{{ $orders['id'] }}"></i></td>
                             <td>
                                 @if(!isset($orders['payment']['payment_status']))
                                 <a href="/payment/{{ $orders['id'] }}" class="btn btn-outline-success btn-sm">Pay</a>
                                 @endif
+                            </td>
+                        </tr>
+                        <tr class="collapse row{{ $orders['id'] }}">
+                            <td colspan="8">
+                                <div class="row">
+                                    <table class="table table-bordered text-center">
+                                        <tr>
+                                            <td>Food</td>
+                                            <td>Quantity</td>
+                                            <td>Price</td>
+                                        </tr>
+                                        @foreach ($orders['order_details'] as $detail)
+                                            <tr>
+                                                <td>{{ isset($detail['food']['name']) ? $detail['food']['name'] : '' }}</td>
+                                                <td>{{ $detail['quantity'] }}</td>
+                                                <td>{{ $detail['total_price'] }}</td>
+                                            </tr>
+                                        @endforeach
+                                        <tr>
+                                            <td colspan="2">Total Price</td>
+                                            <td class="text-success">{{ $orders['total_price'] }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -58,6 +84,12 @@
 @endsection
 @section('script')
 <script>
+    $(document).ready(function() {
+        $("i[data-toggle='collapse']").click(function() {
+            var target = $(this).data("target");
+            $(target).toggleClass("show");
+        });
+    });
 </script>
 
 @endsection

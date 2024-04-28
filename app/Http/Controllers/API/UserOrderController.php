@@ -26,7 +26,8 @@ class UserOrderController extends BaseController
 
     public function orderList()
     {
-        $order = Order::UserId(Auth::user()->id)->with('restaurant','deliveryType','orderStatus','payment')->get();
+        $order = Order::UserId(Auth::user()->id)->with('restaurant','deliveryType','orderStatus','payment',
+        'orderDetails','orderDetails.food')->get();
         return $this->sendResponse([
             'order' => $order
         ], 'Data retrieved successfully.');

@@ -29,11 +29,14 @@
             <div class="row">
 
                 <div class="col-lg-5">
-                    <h3 class="my-3">Description</h3>
+                    <h3 class="my-3"> <i class="fa fa-fw fa-sticky-note"></i>Description</h3>
                     <p>{{$restaurant['description']}}</p>
 
-                    <h3 class="my-3">Category</h3>
+                    <h3 class="my-3"><i class="fa fa-fw fa-tag"></i>Category</h3>
                     <p>{{$restaurant['category']['name']}}</p>
+
+                    <h3 class="my-3"><i class="fa fa-fw fa-map-marker"></i>Address</h3>
+                    <p>{{$restaurant['location']}}</p>
 
                 </div>
 
